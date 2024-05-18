@@ -1,6 +1,5 @@
 import mysql.connector
 
-# Connect to MySQL database
 db_connection = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -8,10 +7,8 @@ db_connection = mysql.connector.connect(
     database="safertek"
 )
 
-# Create cursor
 cursor = db_connection.cursor()
 
-# Sample Queries
 queries = [
     "SELECT * FROM Customers;",
     "SELECT * FROM Orders WHERE OrderDate BETWEEN '2023-01-01' AND '2023-01-31';",
@@ -24,7 +21,6 @@ queries = [
 ]
 
 try:
-    # Execute each query
     for index, query in enumerate(queries, start=1):
         cursor.execute(query)
         results = cursor.fetchall()
@@ -38,7 +34,6 @@ except mysql.connector.Error as err:
     print("Error executing query:", err)
 
 finally:
-    # Close cursor and database connection
     if cursor:
         cursor.close()
     if db_connection:
